@@ -4,6 +4,7 @@ Start: 11/08/2023
 
 Sessions:
 - 11/08/2023
+- 11/10/2023
 
 ## User Defined Types 
 
@@ -61,3 +62,19 @@ We can preprocess the script and only leave the code before the compilation by u
 $ gcc -E -o a.out a.c
 
 But idk what to do with the remaining file.
+
+There's a GNU Manual for this, so if anything, go there!
+
+## Asserts IN C
+
+Asserts are a way to mathematically or a logically way to test our code. 
+They are included in assert.h, and they will abort the code if a conditional passed as arg
+is 0.
+
+But if we define in the preprocesor NDEBUG, as a flag, whitout value. The code will ignore the 
+asserts and run normally, generaly used, like the name implies, to debug the code in development.
+
+This could be defined inside the code file with:
+#define NDEBUG
+or in while executing the compiler with:
+$ gcc -o a.out a.c -DNDEBUG
