@@ -1,10 +1,12 @@
 # Coursera: C Structured Programming
 
 Start: 11/08/2023
+End: 
 
 Sessions:
 - 11/08/2023
 - 11/10/2023
+- 11/11/2023
 
 ## User Defined Types 
 
@@ -78,3 +80,40 @@ This could be defined inside the code file with:
 #define NDEBUG
 or in while executing the compiler with:
 $ gcc -o a.out a.c -DNDEBUG
+
+## Structs and ADTs
+
+Structs are a way to implement Abstract Data Types, which behave like a simple python dict, or like an object
+which only has properties.
+
+It's defined like:
+
+struct foo {
+	type property1;
+	type property2;
+	...
+	type propertyn;
+} bar;
+
+We can use typedef so we can use the foo type everywhere
+
+typedef struct foo { 
+	... 
+} bar;
+
+Then we can use the variable like this using the operator point  .  :
+bar.property1 = value;
+
+Or by using pointers by the member accesing operator  ->  :
+\*bar\-\>property = value;
+
+We can make this declaration shorter using typedef
+
+## Stacks
+
+An Abstract Data Type which let us 'stack' data, just like a stack or pile of hot cakes, 
+the first on top goes first, and the last one goes at last place.
+
+LIFO: Last In First Out.
+
+There's a nice implementation of it in C. Great.
