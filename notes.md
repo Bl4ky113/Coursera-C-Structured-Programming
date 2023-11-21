@@ -7,6 +7,7 @@ Sessions:
 - 11/08/2023
 - 11/10/2023
 - 11/11/2023
+- 11/16/2023
 
 ## User Defined Types 
 
@@ -107,7 +108,14 @@ bar.property1 = value;
 Or by using pointers by the member accesing operator  ->  :
 \*bar\-\>property = value;
 
-We can make this declaration shorter using typedef
+If we try to use the struct type recursively, inside the same struct, we have to use the struct NAME
+as the type even if we have used typedef.
+
+typedef struct foo {
+	type property1;
+	struct foo property2;
+	...
+} foo;
 
 ## Stacks
 
@@ -117,3 +125,7 @@ the first on top goes first, and the last one goes at last place.
 LIFO: Last In First Out.
 
 There's a nice implementation of it in C. Great.
+
+## Linked List
+
+Is a List wich is a series of nodes connected each other by using pointers.
