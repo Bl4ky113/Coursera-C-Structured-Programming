@@ -54,6 +54,8 @@ int *read_number_arr_from_file (int *size) {
 
 	file = fopen(input_file_name, "r");
 
+	assert(file != NULL);
+
 	fscanf(file, "%d", size);
 
 	arr = (int *) calloc(*size, sizeof(int));
@@ -71,10 +73,10 @@ int *read_number_arr_from_file (int *size) {
 	* Calculate the average of a list of numbers
 	* @param{int} size: size or length of the list of numbers
 	* @param{int *} arr: pointer of the list of numbers
-	* @return{int} average of the numbers
+	* @return{double} average of the numbers
 	**/
-int calc_average_from_arr (int size, int *arr) {
-	int avg = 0;
+double calc_average_from_arr (int size, int *arr) {
+	double avg = 0;
 	int sum = 0;
 
 	for (int i = 0; i < size; i ++) {
@@ -87,14 +89,52 @@ int calc_average_from_arr (int size, int *arr) {
 }
 
 /**
+	* Get the max number of a list of numbers
+	* @param{int} size: size or length of the list of numbers
+	* @param{int *} arr: pointer of the list of numbers
+	* @return{int} max number of the numbers
+	**/
+int get_max_number_arr (int size, int *arr) {
+	int max = 0;
+
+	for (int i = 0; i < size; i ++) {
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+	}
+
+	return max;
+}
+
+/**
+	* Get the min value of a list of numbers
+	* @param{int} size: size or length of the list of numbers
+	* @param{int *} arr: pointer of the list of numbers
+	* @return{int} min value of the numbers
+	**/
+int get_min_number_arr (int size, int *arr) {
+	int min = arr[0];
+
+	for (int i = 0; i < size; i ++) {
+		if (arr[i] < min) {
+			min = arr[i];
+		}
+	}
+
+	return min;
+}
+
+/**
 	* print the program results, average of a number list, and the list itself 
 	* in a file
+	* @param{int} min: min of the numbers
+	* @param{int} max: max of the numbers
 	* @param{int} avg: average of the numbers
 	* @param{int} size: length of the number list
 	* @param{int *} arr: pointer of the number list
 	* @return{void}
 	**/
-void print_results_to_file (int avg, int size, int *arr) {
+void print_results_to_file (int min, int max, double avg, int size, int *arr) {
 	FILE *out_file = NULL;
 
 	out_file = fopen(output_file_name, "w+");
@@ -106,10 +146,37 @@ void print_results_to_file (int avg, int size, int *arr) {
 	}
 
 	fprintf(out_file, "\n");
-	fprintf(out_file, "Average: %d\n", avg);
+	fprintf(out_file, "Minimum Value: %d\n", min);
+	fprintf(out_file, "Maximum Value: %d\n", max);
+	fprintf(out_file, "Average: %.2lf\n", avg);
 
 	fclose(out_file);
+	return;
+}
 
+/**
+	* print the program results, average of a number list, and the list itself 
+	* to stdout
+	* @param{int} min: min of the numbers
+	* @param{int} max: max of the numbers
+	* @param{int} avg: average of the numbers
+	* @param{int} size: length of the number list
+	* @param{int *} arr: pointer of the number list
+	* @return{void}
+	**/
+void print_results_to_stdout (int min, int max, double avg, int size, int *arr) {
+	fprintf(stdout, "Numbers: ");
+
+	for (int i = 0; i < size; i ++) {
+		fprintf(stdout, "%d\t", arr[i]);
+	}
+
+	fprintf(stdout, "\n");
+	fprintf(stdout, "Minimum Value: %d\n", min);
+	fprintf(stdout, "Maximum Value: %d\n", max);
+	fprintf(stdout, "Average: %.2lf\n", avg);
+
+	fclose(stdout);
 	return;
 }
 
@@ -121,8 +188,10 @@ void print_results_to_file (int avg, int size, int *arr) {
 	**/
 int main (int argc, char *argv[]) {
 	int *number_arr;
+	double avg = 0;
 	int size = 0;
-	int avg = 0;
+	int min = 0;
+	int max = 0;
 
 	// Handle Command line Args
 	if (argc >= 2) {
@@ -132,8 +201,11 @@ int main (int argc, char *argv[]) {
 	number_arr = read_number_arr_from_file(&size);
 
 	avg = calc_average_from_arr(size, number_arr);
+	min = get_min_number_arr(size, number_arr);
+	max = get_max_number_arr(size, number_arr);
 
-	print_results_to_file(avg, size, number_arr);
+	print_results_to_file(min, max, avg, size, number_arr);
+	print_results_to_stdout(min, max, avg, size, number_arr);
 
 	return 0;
 }
