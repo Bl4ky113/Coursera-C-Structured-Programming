@@ -6,8 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Size of the number file
+// Size of the number list
 #define SIZE_LIST 100
+#define NUMBER_RANGE 256
 
 // Node Struct for a LinkedList
 typedef struct Node {
@@ -22,9 +23,17 @@ typedef struct Node {
  	**/
 void print_list (Node node) {
 	Node *node_ref = &node;
+	int i = 0;
+
 	while (node_ref != NULL) {
 		printf("%d\t", node_ref->value);
 		node_ref = node_ref->next;
+
+		i++;
+
+		if (i % 5 == 0) {
+			printf("\n");
+		}
 	}
 
 	printf("\n");
@@ -47,11 +56,12 @@ Node *create_linked_list_node (int value) {
 }
 
 /**
-	* Function that creates a LinkedList
+	* Function that creates a LinkedList by using an input file 
+	* with the numbers of the list
 	* @param{int} size: size of the LinkedList's Input File
 	* @return{Node*} pointer of the HEAD of the LinkedList
 	**/
-Node *create_linked_list (int size) {
+Node *create_linked_list_file (int size) {
 	Node *head = NULL;
 	FILE *numbers_file;
 
@@ -60,6 +70,23 @@ Node *create_linked_list (int size) {
 	for (int i = 0; i < size; i++) {
 		int number = 0;
 		fscanf(numbers_file, "%d", &number);
+
+		Node *node = create_linked_list_node(number);
+
+		node->next = head;
+
+		head = node;
+	}
+
+	return head;
+}
+
+Node *create_linked_list_random (int size) {
+	Node *head = NULL;
+	unsigned int random_seed = rand();
+
+	for (int i = 0; i < size; i++) {
+		int number = rand_r(&random_seed) % NUMBER_RANGE;
 
 		Node *node = create_linked_list_node(number);
 
@@ -105,7 +132,7 @@ Node *sort_linked_list (Node *list_head) {
 int main (void) {
 	Node *list;
 
-	list = create_linked_list(SIZE_LIST);
+	list = create_linked_list_random(SIZE_LIST);
 
 	print_list(*list);
 

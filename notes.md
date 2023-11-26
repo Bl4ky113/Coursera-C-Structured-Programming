@@ -8,6 +8,8 @@ Sessions:
 - 11/10/2023
 - 11/11/2023
 - 11/16/2023
+- 11/20/2023
+- 11/22/2023
 
 ## User Defined Types 
 
@@ -129,3 +131,46 @@ There's a nice implementation of it in C. Great.
 ## Linked List
 
 Is a List wich is a series of nodes connected each other by using pointers.
+
+## FILE I/O
+
+There's a bunch of internal C stdio.h functions which let us read, write and process files in C.
+
+The main usage is using a FILE variable, then create or open, read, write in a file, with the functions available.
+
+## Command line Args
+
+Generraly in C, you can pass args to the main function by defining two args in it.
+
+int argc, char \*arg[]
+
+The first will take the number of args passed and the seccond, a array of the strings or args passed.
+If you need another type of kind of arg other than a string you should cast it.
+
+## Advanced I/O
+
+The most avanced I/O in C is stdin and stdout, which are a way to recieve input and send output.
+But more than that, it's an industry standard, one which all commandline programs MUST have.
+
+Using this I/O will let the user send a file as an input or ouput using the shell standard input and output
+operators.
+
+In bash
+
+$ ./program.out < inputfile
+$ ./program.out > outputfile
+$ ./program.out >> rewriteInOutputFile
+
+Although this sounds extreamly important and rather difficult to make from scratch. We can make our 
+scripts stdin and stdout compatible by just changing printf and scanf with 
+
+fprintf(where to print, "format", ...values);
+
+fscanf(where to scan, "format", ...values references);
+
+These are generally file functions, but if we pass in the first arg of the function
+
+stin or stout. 
+
+We would be using the stdinput and stdoutput standard.
+It also works normally if we need to use it just like a normal printf or scanf.
