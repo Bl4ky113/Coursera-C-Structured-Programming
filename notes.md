@@ -1,7 +1,7 @@
 # Coursera: C Structured Programming
 
 Start: 11/08/2023
-End: 
+End: 12/06/2023
 
 Sessions:
 - 11/08/2023
@@ -10,6 +10,7 @@ Sessions:
 - 11/16/2023
 - 11/20/2023
 - 11/22/2023
+- 12/06/2023
 
 ## User Defined Types 
 
@@ -174,3 +175,27 @@ stin or stout.
 
 We would be using the stdinput and stdoutput standard.
 It also works normally if we need to use it just like a normal printf or scanf.
+
+## C++
+
+C is a subset of C++, huh?
+
+Yeah. Everything that you can do in C you can do it in C++.
+The only thing is that C++ has more functionalities, stuff and such.
+
+There's a lot of new stuff:
+- addons, new stuff and changes to the libc standard library.
+- auto, for declaring a automatic type for a value, so the compiler
+	gets to choose the type of a variable acording to their current value
+	usage and such
+- STL: New classes which has mainly data structures available, more 
+	complex than the simple allocated-array, but with way more functionalities.
+	for example, the vector is a array look alike, but a little bit better.
+
+That and in general terms, the OOP implemtation of C.
+Which by classes you can create more complex objects, which are not a total abstraction of an object 
+but and object that we can actively use.
+
+And that was it...
+
+One more done.
